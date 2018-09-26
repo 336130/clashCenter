@@ -1,11 +1,35 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import {createStackNavigation} from 'react-navigation';
+
+import {Home} from './app/views/Home';
+import {Contact} from './app/views/Contact'
+
+const Routes = createStackNavigation({
+  HomeRT:{
+    screen:Home,
+    navigationOptions:{
+      header:null
+    }
+  },
+  ContactRT:{
+    screen: Contact,
+    navigationOptions:{
+      header:null
+    }
+  }
+},
+{
+  initialRouteName: 'HomeRT'
+})
+
 export default class App extends React.Component {
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <Routes/>
       </View>
     );
   }
