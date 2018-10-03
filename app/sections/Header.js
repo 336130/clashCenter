@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {StyleSheet,View,Text} from 'react-native';
+import {StyleSheet,View,Text,TouchableOpacity} from 'react-native';
 
 export class Header extends Component {
     constructor(props){
@@ -17,7 +17,9 @@ loginPressed = () => {
         let display = !this.state.isLoggedIn ? 'Login' : 'Username';
         return (
             <View style={styles.container}>
-                <Text style={styles.appLogo}>App!</Text>
+                <TouchableOpacity style={styles.appLogoContainer} onPress={() => this.props.navigate('HomeRT')} >
+                    <Text style={styles.appLogo}>App!</Text>
+                </TouchableOpacity>
                 <Text style={styles.login} onPress={() => this.loginPressed()}>{display}</Text>
             </View>
         )
@@ -31,11 +33,13 @@ const styles = StyleSheet.create({
         paddingTop:20,
         backgroundColor: '#002AFF'
     },
-    appLogo: {
+    appLogoContainer: {
         width: '50%',
+        padding: 5
+    },
+    appLogo:{
         fontSize: 20,
         color: '#ffffff',
-        padding: 5
     },
     login:{
         width: '50%',

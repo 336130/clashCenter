@@ -15,7 +15,7 @@ export class Home extends Component {
         const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Header/>
+                <Header navigate={navigate}/>
                 <Text style={styles.content}>content</Text>
                 <Menu navigate = {navigate}/>
             </View>
