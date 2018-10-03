@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import {createStackNavigation} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 
 import {Home} from './app/views/Home';
 import {Contact} from './app/views/Contact'
 
-const Routes = createStackNavigation({
+const Routes = createStackNavigator({
   HomeRT:{
     screen:Home,
     navigationOptions:{
