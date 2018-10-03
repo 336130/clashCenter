@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {StyleSheet,Text,View} from 'react-native';
 
-import {Header} from '../sections/Header';
-import {Menu} from '../sections/Menu'
-
 import {StackNavigator} from 'react-navigation';
+
+import {Header} from '../sections/Header';
+import {Menu} from '../sections/Menu';
 
 export class Home extends Component {
     constructor(props){
@@ -15,7 +15,7 @@ export class Home extends Component {
         const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Header/>
+                <Header navigate={navigate}/>
                 <Text style={styles.content}>content</Text>
                 <Menu navigate = {navigate}/>
             </View>

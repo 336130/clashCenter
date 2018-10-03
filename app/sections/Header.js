@@ -17,7 +17,7 @@ loginPressed = () => {
         let display = !this.state.isLoggedIn ? 'Login' : 'Username';
         return (
             <View style={styles.container}>
-                <Text style={styles.appLogo}>App!</Text>
+                <Text style={styles.appLogo} onPress={() => this.props.navigate('HomeRT')}>App!</Text>
                 <Text style={styles.login} onPress={() => this.loginPressed()}>{display}</Text>
             </View>
         )
