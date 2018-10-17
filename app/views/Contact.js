@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet,View,Text} from 'react-native'
 
+import { Menu } from '../sections/Menu';
 import {Header} from '../sections/Header'
 
 export class Contact extends Component {
@@ -13,8 +14,8 @@ export class Contact extends Component {
         return (
             <View style={styles.container}>
                 <Header navigate={navigate}/>
-                <Text style={styles.text}>Hi!</Text>
-                <Text style={styles.texts}>Hello!</Text>
+                <Text style={styles.text}>Contact us</Text>
+                <Menu navigate={navigate}/>
             </View>
         )
     }

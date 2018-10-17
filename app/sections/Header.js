@@ -14,7 +14,7 @@ loginPressed = () => {
 }
 
     render(){
-        let display = !this.state.isLoggedIn ? 'Login' : 'Username';
+        let display = !this.state.isLoggedIn ? 'Login' : 'ANORMAN';
         return (
             <View style={styles.container}>
                 <TouchableOpacity style={styles.appLogoContainer} onPress={() => this.props.navigate('HomeRT')} >
