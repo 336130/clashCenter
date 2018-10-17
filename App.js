@@ -22,6 +22,7 @@ const Routes = createStackNavigator({
 },
 {
   initialRouteName: 'HomeRT'
+});
 
 export default class App extends React.Component {
 
