@@ -3,6 +3,9 @@ import {StyleSheet,Text,View} from 'react-native';
 
 import {StackNavigator} from 'react-navigation';
 
+import {Header} from '../sections/Header';
+import {Menu} from '../sections/Menu';
+
 export class Home extends Component {
     constructor(props){
         super(props);
