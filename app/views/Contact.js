@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet,View,Text} from 'react-native'
+import {StyleSheet,View,Text,ScrollView} from 'react-native'
 
 import {Header} from '../sections/Header';
 import { Menu } from '../sections/Menu';
@@ -23,7 +23,64 @@ export class Contact extends Component {
         return (
             <View style={styles.container}>
                 <Header navigate={navigate}/>
-                <Text style={menuStyle}>Contact Us</Text>
+                <View style={menuStyle}>
+                    <ScrollView>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                        <Text>Contact Us</Text>
+                    </ScrollView>
+                    </View>
                 <Menu navigate={navigate} navigation={this.props.navigation} parentMethod={this.menuChange}/>
             </View>
         )

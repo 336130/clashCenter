@@ -34,33 +34,23 @@ export class Menu extends Component  {
                     <TouchableOpacity style={styles.miniItem}>
                     </TouchableOpacity>
                 </View>
+
+
+                <View style={styles.row}>
+                    <TouchableOpacity style={styles.item}>
+                        <Text style={styles.text}>Search</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.item}>
+                        <Text style={styles.text}>News</Text>
+                    </TouchableOpacity>
+                </View>
             
                 <View style={styles.row}>
                     <TouchableOpacity style={styles.item} >
-                        <Text style={styles.text}>About Us</Text>
+                        <Text style={styles.text}>My Account</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('ContactRT')}>
-                        <Text style={styles.text}>Contact Us</Text>
-                    </TouchableOpacity>
-                </View>
-
-
-                <View style={styles.row}>
-                    <TouchableOpacity style={styles.item}>
-                        <Text style={styles.text}>Forum</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.item}>
-                        <Text style={styles.text}>Products</Text>
-                    </TouchableOpacity>
-                </View>
-
-
-                <View style={styles.row}>
-                    <TouchableOpacity style={styles.item}>
-                        <Text style={styles.text}>Quiz</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.item}>
-                        <Text style={styles.text}>Blog</Text>
+                        <Text style={styles.text}>About Us</Text>
                     </TouchableOpacity>
                 </View>
             </View>
