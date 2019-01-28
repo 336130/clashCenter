@@ -1,34 +1,25 @@
 import React, {Component} from 'react';
 import {StyleSheet,View,Text,TouchableOpacity} from 'react-native';
 
-export class Menu extends Component  {
+export default class Menu extends Component  {
     constructor (props){
         super(props);
-        this.state = {
-            menuOpen: this.props.navigation.state.routeName == "HomeRT" ? true : false
-        };
-    };
-
-    toggleMenu = () => {
-        this.setState((prevState) => { return {menuOpen:this.props.navigation.state.routeName =="HomeRT" ? true : !prevState.menuOpen}});
-        this.callParent();
     };
 
     callParent = () => {
-        if (this.props.parentMethod){
-            this.props.parentMethod();
+        if (this.props.menuToggled){
+            this.props.menuToggled();
         };
     }
 
-
     render () {
-        let menuOpen = this.state.menuOpen;
+        let menuOpen = this.props.menuOpen;
         return menuOpen ? (
             <View style={styles.openContainer}>
                 <View style={styles.miniRow}>
                     <TouchableOpacity style={styles.miniItem}>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.miniItem} onPress={this.toggleMenu}>
+                    <TouchableOpacity style={styles.miniItem} onPress={this.callParent}>
                         <Text style={styles.text}>Menu</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.miniItem}>
@@ -37,7 +28,7 @@ export class Menu extends Component  {
 
 
                 <View style={styles.row}>
-                    <TouchableOpacity style={styles.item}>
+                    <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('SearchRT')}>
                         <Text style={styles.text}>Search</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.item}>
@@ -59,7 +50,7 @@ export class Menu extends Component  {
                 <View style={styles.miniRowClosed}>
                     <TouchableOpacity style={styles.miniItem}>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.miniItem} onPress={this.toggleMenu}>
+                    <TouchableOpacity style={styles.miniItem} onPress={this.callParent}>
                         <Text style={styles.text}>Menu</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.miniItem}>

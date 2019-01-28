@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {StyleSheet,View,Text,TouchableOpacity} from 'react-native';
 
-export class Header extends Component {
+export default class Header extends Component {
     constructor(props){
         super(props);
         this.state = {

@@ -1,101 +1,73 @@
 import React, {Component} from 'react';
-import {StyleSheet,View,Text,ScrollView} from 'react-native'
+import {Text,ScrollView} from 'react-native';
 
-import {Header} from '../sections/Header';
-import { Menu } from '../sections/Menu';
+import DefaultView from '../sections/DefaultView';
 
-export class Contact extends Component {
+export  class Contact extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            menuOpen: false
-        }
-    }
-
-    menuChange = () => {
-        this.setState((prevState) => {return {menuOpen: !prevState.menuOpen}})
     }
 
     render (){
-        let menuStyle = this.state.menuOpen ? styles.menuOpenContent : styles.menuClosedContent;
-        
-        const {navigate} = this.props.navigation;
         return (
-            <View style={styles.container}>
-                <Header navigate={navigate}/>
-                <View style={menuStyle}>
-                    <ScrollView>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                        <Text>Contact Us</Text>
-                    </ScrollView>
-                    </View>
-                <Menu navigate={navigate} navigation={this.props.navigation} parentMethod={this.menuChange}/>
-            </View>
+            <DefaultView navigation={this.props.navigation}>
+                <ScrollView>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                    <Text>Contact Us</Text>
+                </ScrollView>
+            </DefaultView>
         )
     }
 }
-
-
-const styles = StyleSheet.create({
-    container:{
-        flex: 1
-    },
-    menuOpenContent:{
-        flex:8
-    },
-    menuClosedContent:{
-        flex:13
-    }
-})

@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
 import {createStackNavigator} from 'react-navigation';
 
 import {Home} from './app/views/Home';
-import {Contact} from './app/views/Contact'
+import {Contact} from './app/views/Contact';
+import {Search} from './app/views/Search';
 
 const Routes = createStackNavigator({
   HomeRT:{
@@ -15,6 +15,12 @@ const Routes = createStackNavigator({
   },
   ContactRT:{
     screen: Contact,
+    navigationOptions:{
+      header:null
+    }
+  },
+  SearchRT:{
+    screen: Search,
     navigationOptions:{
       header:null
     }
