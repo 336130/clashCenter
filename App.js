@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator,createAppContainer} from 'react-navigation';
 
 import {Home} from './app/views/Home';
 import {Contact} from './app/views/Contact';
 import {Search} from './app/views/Search';
 
-const Routes = createStackNavigator({
+const Routes = createAppContainer(createStackNavigator({
   HomeRT:{
     screen:Home,
     navigationOptions:{
@@ -28,7 +28,7 @@ const Routes = createStackNavigator({
 },
 {
   initialRouteName: 'HomeRT'
-});
+}));
 
 export default class App extends React.Component {
   constructor(props){
