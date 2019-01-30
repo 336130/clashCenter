@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
     text:{
         color: '#ffffff',
-    fontSize: 18
+        fontSize: 18
     },
     closedContainer:{
         flex:1,

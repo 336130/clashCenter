@@ -10,7 +10,8 @@ const Tabs =createAppContainer( createMaterialTopTabNavigator({
     Criteria: {
         screen:SearchCriteria,
         navigationOptions:{
-          header:null
+            tabBarVisible: false,
+            swipeEnabled: false
         }
     },
     Results: {
@@ -21,7 +22,7 @@ const Tabs =createAppContainer( createMaterialTopTabNavigator({
     }
 },
 {
-  initialRouteName: 'Criteria'
+  initialRouteName: 'Criteria',
 }));
 
 export class Search extends Component{
