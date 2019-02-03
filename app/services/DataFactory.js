@@ -2,13 +2,21 @@ import React, {Component} from 'react';
 
 export default class DataFactory {
 
-    ApiEndpoint = "localhost";
+    static ApiEndpoint = "http://192.168.1.99/api/";
 
-    static searchForTerm = (searchTerm) => {
-        return searchTerm + " Results";
+    static getData = (destination,parameters) => {
+        return fetch(DataFactory.ApiEndpoint + destination,{
+            method:"POST",
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(parameters)
+         })
+        .then((response) => response.json())
     }
 
-    static fetchData = (destination,data) => {
-        return fetch(this.ApiEndpoint + destination,data);
+    static SearchForTerm = (searchTerm) => {
+         return DataFactory.getData("search/SearchForClan",{name:searchTerm});        
     }
 }

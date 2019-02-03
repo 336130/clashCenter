@@ -9,13 +9,11 @@ export class SearchResults extends Component{
     }
 
     render(){
-        const {navigation} = this.props;
-        const searchTerm = navigation.getParam('searchTerm','')
-        let displayTerm = searchTerm ? DataFactory.searchForTerm(searchTerm) : "No Results";
-
+        console.log(this.props.data);
+        let displayValue = this.props.data === null ? "":this.props.data.toString();
 
         return(
-            <Text>{displayTerm}</Text>
+            <Text>{displayValue}</Text>
         )
     }
 }

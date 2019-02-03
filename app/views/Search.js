@@ -1,29 +1,10 @@
 import React, {Component} from 'react';
-import {createMaterialTopTabNavigator,createAppContainer} from 'react-navigation';
 
 import DefaultView from '../sections/DefaultView';
 
 import {SearchCriteria} from '../sections/SearchCriteria';
 import {SearchResults} from '../sections/SearchResults';
 
-const Tabs =createAppContainer( createMaterialTopTabNavigator({
-    Criteria: {
-        screen:SearchCriteria,
-        navigationOptions:{
-            tabBarVisible: false,
-            swipeEnabled: false
-        }
-    },
-    Results: {
-        screen:SearchResults,
-        navigationOptions:{
-          header:null
-        }
-    }
-},
-{
-  initialRouteName: 'Criteria',
-}));
 
 export class Search extends Component{
     constructor(props){
@@ -34,7 +15,7 @@ export class Search extends Component{
     render(){
         return (
             <DefaultView navigation={this.props.navigation}>
-                <Tabs/>
+                <SearchCriteria></SearchCriteria>
             </DefaultView>
         )
     }
