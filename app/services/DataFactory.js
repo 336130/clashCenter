@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 export default class DataFactory {
 
-    static ApiEndpoint = "http://192.168.1.99/api/";
+    static ApiEndpoint = "http://192.168.1.106/api/";
 
     static getData = (destination,parameters) => {
         return fetch(DataFactory.ApiEndpoint + destination,{
@@ -16,7 +16,7 @@ export default class DataFactory {
         .then((response) => response.json())
     }
 
-    static SearchForTerm = (searchTerm) => {
-         return DataFactory.getData("search/SearchForClan",{name:searchTerm});        
+    static SearchForTerm = (name,warFrequency,minMembers,maxMembers,minClanPoints,minClanLevel) => {
+         return DataFactory.getData("search/SearchForClan",{name,warFrequency,minMembers,maxMembers,minClanPoints,minClanLevel});        
     }
 }

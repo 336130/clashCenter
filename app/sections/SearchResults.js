@@ -1,19 +1,35 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
+import {View,Text,StyleSheet} from 'react-native';
 
-import DataFactory from '../services/DataFactory';
+import {SmallClanDisplay} from './SmallClanDisplay'
 
 export class SearchResults extends Component{
     constructor(props){
         super(props);
+        this.state = props;
     }
 
     render(){
-        console.log(this.props.data);
-        let displayValue = this.props.data === null ? "":this.props.data.toString();
+        let searchContainer = [];
+
+        if (this.props.data != null){
+            if (this.props.data.items != null){
+                this.props.data.items.forEach(Clan => {
+                    searchContainer.push(<SmallClanDisplay clan={Clan} key={Clan.Tag}/>);
+                });
+            }
+        }
+
+        let replacementText = <View>
+            <Text style={{textAlign:'center',marginTop: 30}}>Please enter a clan name to search.</Text>
+        </View>;
+
+        let displayValue = searchContainer.length ? searchContainer:replacementText;
 
         return(
-            <Text>{displayValue}</Text>
+            <View>
+                {displayValue}
+            </View>
         )
     }
 }

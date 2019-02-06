@@ -25,8 +25,7 @@ export default class Menu extends Component  {
                     <TouchableOpacity style={styles.miniItem}>
                     </TouchableOpacity>
                 </View>
-
-
+                
                 <View style={styles.row}>
                     <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('SearchRT')}>
                         <Text style={styles.text}>Search</Text>
