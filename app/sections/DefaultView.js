@@ -21,8 +21,10 @@ export default class DefaultView extends Component{
 
         let {navigate} = this.props.navigation;
 
+        let bc =  this.props.backgroundColor ? this.props.backgroundColor : '#ffffff';
+
         return(
-            <View style={styles.container}>
+            <View style={[styles.container,{backgroundColor:bc}]}>
                 <Header navigate={navigate}/>
                 <View style={contentStyle}>
                     {this.props.children}

@@ -16,7 +16,12 @@ export default class DataFactory {
         .then((response) => response.json())
     }
 
-    static SearchForTerm = (name,warFrequency,minMembers,maxMembers,minClanPoints,minClanLevel) => {
-         return DataFactory.getData("search/SearchForClan",{name,warFrequency,minMembers,maxMembers,minClanPoints,minClanLevel});        
+    static SearchForTerm = (name,warFrequency,minMembers,maxMembers,minClanPoints,minClanLevel,location) => {
+         return DataFactory.getData("search/SearchForClan",{name,warFrequency,minMembers,maxMembers,minClanPoints,minClanLevel,location});        
+    }
+
+    static GetLocations = () => {
+        return fetch(DataFactory.ApiEndpoint + "location/GetLocations")
+        .then((response) => response.json());
     }
 }

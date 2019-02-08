@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {View,Text,StyleSheet} from 'react-native';
+import {ActivityIndicator,View,Text} from 'react-native';
 
-import {SmallClanDisplay} from './SmallClanDisplay'
+import {SmallClanDisplay} from '../SmallClanDisplay'
 
 export class SearchResults extends Component{
     constructor(props){
@@ -13,11 +13,9 @@ export class SearchResults extends Component{
         let searchContainer = [];
 
         if (this.props.data != null){
-            if (this.props.data.items != null){
-                this.props.data.items.forEach(Clan => {
-                    searchContainer.push(<SmallClanDisplay clan={Clan} key={Clan.Tag}/>);
-                });
-            }
+            this.props.data.forEach(Clan => {
+                searchContainer.push(<SmallClanDisplay clan={Clan} key={Clan.Tag}/>);
+            });
         }
 
         let replacementText = <View>
@@ -25,6 +23,16 @@ export class SearchResults extends Component{
         </View>;
 
         let displayValue = searchContainer.length ? searchContainer:replacementText;
+
+        if (this.props.loading) {
+            displayValue = <View>
+                <ActivityIndicator size="large" color="#42b9f4"></ActivityIndicator>
+            </View>
+        }
+
+        if (this.props.errors){
+            displayValue = <Text style={{textAlign:'center',marginTop: 30,color:'#e01e14'}}>{this.props.errors}</Text>;
+        }
 
         return(
             <View>
