@@ -13,9 +13,10 @@ export class SearchResults extends Component{
         let searchContainer = [];
 
         if (this.props.data != null){
-            this.props.data.forEach(Clan => {
+            for (var i = 0; i < 100; i++){
+                let Clan = this.props.data[i];
                 searchContainer.push(<SmallClanDisplay clan={Clan} key={Clan.Tag}/>);
-            });
+            }
         }
 
         let replacementText = <View>
@@ -26,7 +27,7 @@ export class SearchResults extends Component{
 
         if (this.props.loading) {
             displayValue = <View>
-                <ActivityIndicator size="large" color="#42b9f4"></ActivityIndicator>
+                <ActivityIndicator style={{marginTop: 30}} size="large" color="#42b9f4"></ActivityIndicator>
             </View>
         }
 

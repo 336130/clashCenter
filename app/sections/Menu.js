@@ -17,27 +17,27 @@ export default class Menu extends Component  {
         return menuOpen ? (
             <View style={styles.openContainer}>
                 <View style={styles.miniRow}>
-                    <TouchableOpacity style={styles.miniItem}>
+                    <TouchableOpacity style={styles.miniItem} onPress={this.callParent}>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.miniItem} onPress={this.callParent}>
                         <Text style={styles.text}>Menu</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.miniItem}>
+                    <TouchableOpacity style={styles.miniItem} onPress={this.callParent}>
                     </TouchableOpacity>
                 </View>
                 
                 <View style={styles.row}>
-                    <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('SearchRT')}>
-                        <Text style={styles.text}>Search</Text>
+                    <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('HomeRT')}>
+                        <Text style={styles.text}>Home</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.item}>
-                        <Text style={styles.text}>News</Text>
+                    <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('AccountRT')}>
+                        <Text style={styles.text}>Account</Text>
                     </TouchableOpacity>
                 </View>
             
                 <View style={styles.row}>
-                    <TouchableOpacity style={styles.item} >
-                        <Text style={styles.text}>My Account</Text>
+                    <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('SearchRT')}>
+                        <Text style={styles.text}>Search</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('ContactRT')}>
                         <Text style={styles.text}>About Us</Text>
@@ -47,12 +47,12 @@ export default class Menu extends Component  {
         ) : (
             <View style={styles.closedContainer}>
                 <View style={styles.miniRowClosed}>
-                    <TouchableOpacity style={styles.miniItem}>
+                    <TouchableOpacity style={styles.miniItem} onPress={this.callParent}>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.miniItem} onPress={this.callParent}>
                         <Text style={styles.text}>Menu</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.miniItem}>
+                    <TouchableOpacity style={styles.miniItem} onPress={this.callParent}>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -63,7 +63,9 @@ export default class Menu extends Component  {
 const styles = StyleSheet.create({
     openContainer:{
         flex:6,
-        backgroundColor: '#002AFF'
+        backgroundColor: '#002AFF',
+        borderColor:'#ffffff',
+        borderTopWidth: 1
     },
     row:{
         flex:2,
@@ -84,7 +86,9 @@ const styles = StyleSheet.create({
     },
     closedContainer:{
         flex:1,
-        backgroundColor: '#002AFF'
+        backgroundColor: '#002AFF',
+        borderColor:'#ffffff',
+        borderTopWidth: 1
     },
     miniRow:{
         flex:1,

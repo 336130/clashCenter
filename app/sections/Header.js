@@ -1,26 +1,22 @@
 import React,{Component} from 'react';
 import {StyleSheet,View,Text,TouchableOpacity} from 'react-native';
 
+import AccountFactory from '../services/AccountFactory';
+
 export default class Header extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            isLoggedIn : false
-        }
     }
 
-loginPressed = () => {
-    this.setState((prevState) =>  { return {isLoggedIn: !prevState.isLoggedIn}})
-}
-
     render(){
-        let display = !this.state.isLoggedIn ? 'Login' : 'ANORMAN';
         return (
             <View style={styles.container}>
                 <TouchableOpacity style={styles.appLogoContainer} onPress={() => this.props.navigate('HomeRT')} >
-                    <Text style={styles.appLogo}>App!</Text>
+                    <Text style={styles.appLogo}>ClashCenter</Text>
                 </TouchableOpacity>
-                <Text style={styles.login} onPress={() => this.loginPressed()}>{display}</Text>
+                <TouchableOpacity style={styles.loginContainer} onPress={() => this.props.navigate("AccountRT")}>
+                    <Text style={styles.login}>Account</Text>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -35,14 +31,17 @@ const styles = StyleSheet.create({
     },
     appLogoContainer: {
         width: '50%',
-        padding: 5
+        padding: 7
     },
     appLogo:{
         fontSize: 20,
         color: '#ffffff',
     },
-    login:{
+    loginContainer:{
         width: '50%',
+        padding: 5
+    },
+    login:{
         textAlign:'right',
         fontSize: 20,
         color: '#ffffff',

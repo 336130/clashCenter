@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {AsyncStorage} from 'react-native';
+
+import AccountFactory from './AccountFactory';
 
 export default class DataFactory {
 
@@ -10,6 +13,7 @@ export default class DataFactory {
             headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
+              'Authorization' : 'Bearer ' + AccountFactory.Token
             },
             body: JSON.stringify(parameters)
          })

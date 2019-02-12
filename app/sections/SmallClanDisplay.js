@@ -10,7 +10,7 @@ export class SmallClanDisplay extends Component {
         let clan = this.props.clan;
         return(
             <View style={styles.container}>
-                <View>
+                <View style={styles.paddingRight}>
                     <View style={styles.imageContainer}>
                         <Image 
                             style={styles.image}
@@ -20,9 +20,13 @@ export class SmallClanDisplay extends Component {
                             <Text>{clan.ClanLevel}</Text>
                         </View>
                     </View>
-                    <Text>{clan.Tag}</Text>
+                    <Text style={styles.tag}>{clan.Tag}</Text>
                 </View>
-                <Text>{clan.Name}</Text>
+                <View>
+                    <Text style={styles.name}>{clan.Name}</Text>
+                    <Text>Members: {clan.Members}</Text>
+                    <Text>Clan Points: {clan.ClanPoints}</Text>
+                </View>
             </View>
         )
     }
@@ -57,5 +61,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffd700',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    paddingRight:{
+        paddingRight: 5
+    },
+    tag:{
+        fontSize:12
+    },
+    name: {
+        fontSize:24,
+        textDecorationLine: 'underline'
     }
 })

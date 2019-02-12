@@ -62,36 +62,46 @@ export class SearchCriteria extends Component{
     }
 
     validateSearch = () => {
-        //must have atleast 3 
         let retVal = true,errorMessage = "";
         if (!this.state.advancedOpen && (!this.state.criteria.name || this.state.criteria.name.length < 3)) {
             retVal = false;
             errorMessage += "You must have atleast 3 characters when searching only by name.\r\n";
         }
         if (this.state.advancedOpen) {
-            if (this.state.criteria.minClanLevel != 0 && this.state.criteria.minClanLevel < 2){
-                retVal = false;
-                errorMessage += "Minimum Clan Level must be at least 2.\r\n";
-            }
-            if (this.state.criteria.minMembers != 0 && this.state.criteria.minMembers < 2){
-                retVal = false;
-                errorMessage += "Minimum Members must be at least 2.\r\n";
-            }
-            if (this.state.criteria.maxMembers != 0 && this.state.criteria.maxMembers > 50){
-                retVal = false;
-                errorMessage += "Maximum Members can not be above 50.\r\n";
-            }
-            if (this.state.criteria.maxMembers != 0 && this.state.criteria.minMembers > this.state.criteria.maxMembers){
-                retVal = false;
-                errorMessage += "Cannot have a Minimum Members value greater than the Maximum Members value.\r\n";
+            //still need to make sure atleast one value is being sent to server
+            if ((!this.state.criteria.name ||
+                this.state.criteria.name.length < 3) &&
+                (!this.state.criteria.minClanLevel &&
+                !this.state.criteria.minClanPoints &&
+                !this.state.criteria.minMembers &&
+                !this.state.criteria.maxMembers &&
+                !this.state.criteria.location &&
+                !this.state.criteria.warFrequency)){
+                    retVal = false;
+                    errorMessage += "Please provide either 3 characters for a name or some values for the advaced search parameters.";
+            } else {
+                if (this.state.criteria.minClanLevel != 0 && this.state.criteria.minClanLevel < 2){
+                    retVal = false;
+                    errorMessage += "Minimum Clan Level must be at least 2.\r\n";
+                }
+                if (this.state.criteria.minMembers != 0 && this.state.criteria.minMembers < 2){
+                    retVal = false;
+                    errorMessage += "Minimum Members must be at least 2.\r\n";
+                }
+                if (this.state.criteria.maxMembers != 0 && this.state.criteria.maxMembers > 50){
+                    retVal = false;
+                    errorMessage += "Maximum Members can not be above 50.\r\n";
+                }
+                if (this.state.criteria.maxMembers != 0 && this.state.criteria.minMembers > this.state.criteria.maxMembers){
+                    retVal = false;
+                    errorMessage += "Cannot have a Minimum Members value greater than the Maximum Members value.\r\n";
+                }
             }
         }
-
         //send error messages to result page to display
         if (!retVal) {
             this.props.errors(errorMessage);
         }
-
         return retVal;
     }
 
@@ -101,19 +111,21 @@ export class SearchCriteria extends Component{
 
 
     render(){
-        
         let advancedControlIcon = this.state.advancedOpen ? 'angle-double-up' : 'angle-double-down';
-
 
         return(
             <View>
                 <TextInput 
                     style={styles.nameInput}
                     autoFocus={true}
-                    placeholder={'Clan Name'}
-                    placeholderTextColor={'#000000'}
+                    placeholder={'Enter Clan Name'}
+                    placeholderTextColor={'#aaaaaa'}
                     underlineColorAndroid={'transparent'}
-                    onChangeText={(name) => this.setState({name})}
+                    onChangeText={(name) =>{ 
+                        let criteria = this.state.criteria;
+                        criteria.name = name;
+                        this.setState(criteria);
+                    }}
                     onSubmitEditing={this.submitSearch}>
                 </TextInput>
                 <AdvancedSearchControls open={this.state.advancedOpen} locations={this.state.locationData} searchCriteria={this.state.criteria}></AdvancedSearchControls>
@@ -148,7 +160,7 @@ const styles= StyleSheet.create({
     nameInput: {
         borderColor:'#000000',
         borderBottomWidth: 1,
-        fontSize:18,
+        fontSize:24,
         backgroundColor: '#ffffff'
     },
     advancedControlButton:{

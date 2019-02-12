@@ -5,6 +5,8 @@ import {createStackNavigator,createAppContainer} from 'react-navigation';
 import {Home} from './app/views/Home';
 import {Contact} from './app/views/Contact';
 import {Search} from './app/views/Search';
+import {Account} from './app/views/Account';
+import AccountFactory from './app/services/AccountFactory';
 
 const Routes = createAppContainer(createStackNavigator({
   HomeRT:{
@@ -24,6 +26,12 @@ const Routes = createAppContainer(createStackNavigator({
     navigationOptions:{
       header:null
     }
+  },
+  AccountRT:{
+    screen: Account,
+    navigationOptions:{
+      header:null
+    }
   }
 },
 {
@@ -33,9 +41,17 @@ const Routes = createAppContainer(createStackNavigator({
 export default class App extends React.Component {
   constructor(props){
     super(props);
+    //need to retrieve token from 
+    AccountFactory.GetToken().then((token) => {
+      AccountFactory.Token = token;
+      AccountFactory.RefreshAuthToken()
+    })
   }
 
+
+
   render() {
+
     return (
         <Routes />
     );
