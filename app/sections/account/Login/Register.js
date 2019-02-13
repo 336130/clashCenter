@@ -52,6 +52,7 @@ export class Register extends Component{
                         underlineColorAndroid={'transparent'}
                         secureTextEntry={true} 
                         onChangeText={(password) => this.setState({password})}
+                        onSubmitEditing={this.handleRegistration}
                     ></TextInput>
                 </View>
                 <TouchableOpacity style={styles.loginButton} onPress={this.handleRegistration}>

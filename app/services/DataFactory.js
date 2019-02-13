@@ -28,4 +28,20 @@ export default class DataFactory {
         return fetch(DataFactory.ApiEndpoint + "location/GetLocations")
         .then((response) => response.json());
     }
+
+    static AddFavorite = (tag) => {
+        return DataFactory.getData("clan/AddFavorite",{tag});
+    }
+
+    static AddInterest = (tag) => {
+        return DataFactory.getData("clan/AddInterest",{tag});
+    }
+
+    static RemoveFavorite = (tag) => {
+        return DataFactory.getData("clan/RemoveFavorite",{tag});
+    }
+
+    static RemoveInterest = (tag) => {
+        return DataFactory.getData("clan/RemoveInterest",{tag});
+    }
 }

@@ -55,6 +55,7 @@ export class SignIn extends Component{
                         underlineColorAndroid={'transparent'}
                         secureTextEntry={true} 
                         onChangeText={(password) => this.setState({password})}
+                        onSubmitEditing={this.handleLogin}
                     ></TextInput>
                 </View>
                 <TouchableOpacity style={styles.loginButton} onPress={this.handleLogin}>

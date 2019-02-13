@@ -12,7 +12,8 @@ export class Search extends Component{
         this.state = {
             searchData: null,
             loading: false,
-            errors: ""
+            errors: "",
+            change:1
         }
     }
 
@@ -28,18 +29,22 @@ export class Search extends Component{
         this.setState({errors:val});
     }
 
+    handleChange = () => {
+        this.setState({change:this.state.change + 1})
+    }
+
     render(){
 
         let counter = this.state.searchData ? this.state.searchData.length : false;
         let display = !counter ? <Text></Text> :
-            <Text style={{textAlign:'center'}}>{this.state.searchData.length.toString()} Results. Showing 100.</Text>;
+            <Text style={{textAlign:'center'}}>{this.state.searchData.length.toString()} Results.</Text>;
 
         return (
             <DefaultView navigation={this.props.navigation} backgroundColor="#dddddd">
-                <SearchCriteria searchData={this.handleSearchData} loading={this.handleLoading} errors={this.handleErrors} />
+                <SearchCriteria searchData={this.handleSearchData} loading={this.handleLoading} errors={this.handleErrors} change={this.state.change}/>
                 {display}
                     <ScrollView>
-                        <SearchResults data={this.state.searchData} loading={this.state.loading} errors={this.state.errors} />
+                        <SearchResults data={this.state.searchData} loading={this.state.loading} errors={this.state.errors} callParent={this.handleChange}/>
                     </ScrollView>
             </DefaultView>
         )

@@ -51,4 +51,8 @@ export default class AccountFactory{
             console.log(error);
         });
     }
+
+    static GetUserDetails = () => {
+        return DataFactory.getData("account/GetUserDetails",{})
+    }
 }

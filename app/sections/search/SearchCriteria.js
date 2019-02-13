@@ -29,6 +29,7 @@ export class SearchCriteria extends Component{
         }
     }
 
+    //load locations dropdown
     componentDidMount() {
         DataFactory.GetLocations()
         .then((response) => {
@@ -37,7 +38,16 @@ export class SearchCriteria extends Component{
         .catch((error) => console.log(error));
     }
 
+    //when a favorite/interest is changed need to resend for fresh data
+    componentDidUpdate(prevProps) {
+        if (prevProps.change != this.props.change){
+            this.submitSearch();
+        }
+    }
+
     submitSearch = () => { 
+        //clear out previous results to clear up memory
+        this.props.searchData(null);
         if (this.validateSearch()) {
             this.setState({advancedOpen:false,searchedOnce:true});
             this.props.loading(true);
