@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import DefaultView from '../sections/DefaultView';
 
-import {Login} from '../sections/account/Login/Login';
+import {Login} from '../sections/account/login/Login';
 import {AccountDetails} from '../sections/account/AccountDetails'
 
 import AccountFactory from '../services/AccountFactory'; 
