@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 import {StyleSheet,View,Text,TouchableOpacity} from 'react-native';
 
-import AccountFactory from '../services/AccountFactory';
-
 export default class Header extends Component {
     constructor(props){
         super(props);

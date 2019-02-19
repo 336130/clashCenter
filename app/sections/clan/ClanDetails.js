@@ -1,14 +1,21 @@
-import React, {Component} from 'react';
-import {View,Text,StyleSheet,Image,TouchableOpacity} from 'react-native';
+import React,{Component} from 'react';
+import {View,Text,Image,StyleSheet,TouchableOpacity,ScrollView} from 'react-native'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import DataFactory from '../../services/DataFactory';
 import AccountFactory from '../../services/AccountFactory';
+import { SmallMemberDetails } from './SmallMemberDetails';
 
-export class SmallClanDisplay extends Component {
+export class ClanDetails extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            initialClanData: this.props.clan,
+            dataFetched: false,
+            fetchedClan: null,
+            fetchedClanHistory:null
+        };
     }
 
     handleFavoritePress = () => {
@@ -16,16 +23,12 @@ export class SmallClanDisplay extends Component {
             if (this.props.clan.IsFavorite){
                 DataFactory.RemoveFavorite(this.props.clan.Tag)
                 .then((response) => {
-                    if (response) {
-                        this.props.callParent();
-                    }
+                    this.getUpdatedData();
                 })
             } else {
                 DataFactory.AddFavorite(this.props.clan.Tag)
                 .then((response) => {
-                    if (response) {
-                        this.props.callParent();
-                    }
+                    this.getUpdatedData();
                 })
             }
         } else {
@@ -38,16 +41,12 @@ export class SmallClanDisplay extends Component {
             if (this.props.clan.IsInterest){
                 DataFactory.RemoveInterest(this.props.clan.Tag)
                 .then((response) => {
-                    if (response) {
-                        this.props.callParent();
-                    }
+                    this.getUpdatedData();
                 })
             } else {
                 DataFactory.AddInterest(this.props.clan.Tag)
                 .then((response) => {
-                    if (response) {
-                        this.props.callParent();
-                    }
+                    this.getUpdatedData();
                 })
             }
         } else {
@@ -55,19 +54,37 @@ export class SmallClanDisplay extends Component {
         }
     }
 
-    handleClanPress = () => {
-        this.props.navigation.navigate("ClanRT",{clanTag:this.props.clan});
+    getUpdatedData = () => {
+        DataFactory.GetClan(this.props.clan.Tag)
+        .then((response) => {
+            this.setState({fetchedClan:response.Latest,
+                fetchedClanHistory:response.History,
+                dataFetched:true});
+        })
+    }
+
+    componentDidMount(){    
+        this.getUpdatedData();
     }
 
     render(){
-        let clan = this.props.clan;
+        let clan = null, members = [];
+        if (this.state.dataFetched) {
+            clan = this.state.fetchedClan;
+            for (var i = 0; i < clan.MemberList.length; i++){
+                 members.push(<SmallMemberDetails member={clan.MemberList[i]} key={i}></SmallMemberDetails>)
+            }           
+        } else {
+            clan = this.props.clan;
+            members = <View></View>
+        }
 
-        let favColor = this.props.clan.IsFavorite ? "#ffeb11" : "#000000";
-        let intColor = this.props.clan.IsInterest ? "#ffeb11" : "#000000";
+        let favColor = clan.IsFavorite ? "#ffeb11" : "#000000";
+        let intColor = clan.IsInterest ? "#ffeb11" : "#000000";
         return(
             <View style={styles.container}>
-                <View style={styles.paddingRight}>
-                    <TouchableOpacity onPress={this.handleClanPress}>
+                <View style={styles.detailsContainer}>
+                    <View style={styles.paddingRight}>
                         <View style={styles.imageContainer}>
                             <Image 
                                 style={styles.image}
@@ -78,22 +95,28 @@ export class SmallClanDisplay extends Component {
                             </View>
                         </View>
                         <Text style={styles.tag}>{clan.Tag}</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.clanText}>
-                    <TouchableOpacity onPress={this.handleClanPress}>
+                    </View>
+                    <View style={styles.clanText}>
                         <Text numberOfLines={1} style={styles.name}>{clan.Name}</Text>
                         <Text>Members: {clan.Members}</Text>
                         <Text>Clan Points: {clan.ClanPoints}</Text>
-                    </TouchableOpacity>
+                    </View>
+                    <View style={styles.favIcons}>
+                        <TouchableOpacity onPress={this.handleFavoritePress}>
+                            <Icon style={styles.favIcon} name={"star"} size={40} color={favColor}></Icon>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={this.handleInterestPress}>
+                            <Icon style={styles.favIcon} name={"heart"} size={40} color={intColor}></Icon>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.favIcons}>
-                    <TouchableOpacity onPress={this.handleFavoritePress}>
-                        <Icon style={styles.favIcon} name={"star"} size={40} color={favColor}></Icon>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={this.handleInterestPress}>
-                        <Icon style={styles.favIcon} name={"heart"} size={40} color={intColor}></Icon>
-                    </TouchableOpacity>
+                <View style={styles.extendedDetailsContainer}>
+                    <View>
+                        <Text>Members</Text>
+                    </View>
+                    <ScrollView>
+                        {members}
+                    </ScrollView>
                 </View>
             </View>
         )
@@ -102,14 +125,20 @@ export class SmallClanDisplay extends Component {
 
 const styles = StyleSheet.create({
     container:{
+        flex:1
+    },
+    detailsContainer:{
         height:80,
         borderWidth:1,
         borderColor: '#0066ff',
         flex: 1,
-        flexDirection:'row'
+        flexDirection:'row',
+        margin:5,
+        padding: 10,
+        backgroundColor:'#cccccc'
     },
     imageContainer:{
-        height:55,
+        height:55
     },
     image:{
         position:'absolute',
@@ -148,5 +177,8 @@ const styles = StyleSheet.create({
     },
     favIcon:{
         padding:20
+    },
+    extendedDetailsContainer:{
+        flex:5
     }
 })

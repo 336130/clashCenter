@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ScrollView,Text} from 'react-native';
 
-import DefaultView from '../sections/DefaultView';
+import DefaultView from '../sections/main/DefaultView';
 
 import {SearchCriteria} from '../sections/search/SearchCriteria';
 import {SearchResults} from '../sections/search/SearchResults';
@@ -44,7 +44,7 @@ export class Search extends Component{
                 <SearchCriteria searchData={this.handleSearchData} loading={this.handleLoading} errors={this.handleErrors} change={this.state.change}/>
                 {display}
                     <ScrollView>
-                        <SearchResults data={this.state.searchData} loading={this.state.loading} errors={this.state.errors} callParent={this.handleChange}/>
+                        <SearchResults navigation={this.props.navigation} data={this.state.searchData} loading={this.state.loading} errors={this.state.errors} callParent={this.handleChange}/>
                     </ScrollView>
             </DefaultView>
         )

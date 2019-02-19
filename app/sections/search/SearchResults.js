@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ActivityIndicator,View,Text} from 'react-native';
 
-import {SmallClanDisplay} from '../SmallClanDisplay'
+import {SmallClanDisplay} from '../clan/SmallClanDisplay'
 
 export class SearchResults extends Component{
     constructor(props){
@@ -13,12 +13,9 @@ export class SearchResults extends Component{
         let searchContainer = [];
 
         if (this.props.data != null){
-            let sorted = this.props.data.sort((a,b) => {
-                return (a.IsFavorite == b.IsFavorite) ? 0 : a.IsFavorite && !b.IsFavorite ? -1 : 1; 
-            });
-            for (var i = 0; i < sorted.length; i++){
+            for (var i = 0; i < this.props.data.length; i++){
                 let Clan = this.props.data[i];
-                searchContainer.push(<SmallClanDisplay clan={Clan} key={Clan.Tag} callParent={this.props.callParent}/>);
+                searchContainer.push(<SmallClanDisplay navigation={this.props.navigation} clan={Clan} key={Clan.Tag} callParent={this.props.callParent}/>);
             }
         }
 

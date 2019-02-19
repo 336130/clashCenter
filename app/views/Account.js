@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import DefaultView from '../sections/DefaultView';
+import DefaultView from '../sections/main/DefaultView';
 
 import {Login} from '../sections/account/login/Login';
 import {AccountDetails} from '../sections/account/AccountDetails'

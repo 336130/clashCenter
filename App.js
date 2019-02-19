@@ -3,9 +3,11 @@ import React from 'react';
 import {createStackNavigator,createAppContainer} from 'react-navigation';
 
 import {Home} from './app/views/Home';
-import {Contact} from './app/views/Contact';
+import {About} from './app/views/About';
 import {Search} from './app/views/Search';
 import {Account} from './app/views/Account';
+import {Clan} from './app/views/Clan';
+
 import AccountFactory from './app/services/AccountFactory';
 
 const Routes = createAppContainer(createStackNavigator({
@@ -15,8 +17,8 @@ const Routes = createAppContainer(createStackNavigator({
       header:null
     }
   },
-  ContactRT:{
-    screen: Contact,
+  AboutRT:{
+    screen: About,
     navigationOptions:{
       header:null
     }
@@ -29,6 +31,12 @@ const Routes = createAppContainer(createStackNavigator({
   },
   AccountRT:{
     screen: Account,
+    navigationOptions:{
+      header:null
+    }
+  },
+  ClanRT:{
+    screen: Clan,
     navigationOptions:{
       header:null
     }

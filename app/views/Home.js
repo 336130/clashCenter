@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native';
 
-import DefaultView from '../sections/DefaultView';
+import DefaultView from '../sections/main/DefaultView';
 
 export  class Home extends Component {
     constructor(props){

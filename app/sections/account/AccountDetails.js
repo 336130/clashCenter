@@ -3,7 +3,7 @@ import {View,Text,StyleSheet,TouchableOpacity,ScrollView} from 'react-native';
 
 import AccountFactory from '../../services/AccountFactory';
 
-import {SmallClanDisplay} from '../SmallClanDisplay';
+import {SmallClanDisplay} from '../clan/SmallClanDisplay';
 
 export class AccountDetails extends Component{
     constructor(props){
@@ -37,7 +37,7 @@ export class AccountDetails extends Component{
             if (this.state.accountInfo.Favorites){
                 for (var i = 0; i <  this.state.accountInfo.Favorites.length; i++){
                     let Clan = this.state.accountInfo.Favorites[i];
-                    favoritesContainer.push(<SmallClanDisplay clan={Clan} key={Clan.Tag} callParent={this.handleFavoriteChange}/>);
+                    favoritesContainer.push(<SmallClanDisplay navigation={this.props.navigation} clan={Clan} key={Clan.Tag} callParent={this.handleFavoriteChange}/>);
                 }
             }
         }

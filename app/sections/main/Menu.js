@@ -39,7 +39,7 @@ export default class Menu extends Component  {
                     <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('SearchRT')}>
                         <Text style={styles.text}>Search</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('ContactRT')}>
+                    <TouchableOpacity style={styles.item} onPress={() => this.props.navigate('AboutRT')}>
                         <Text style={styles.text}>About Us</Text>
                     </TouchableOpacity>
                 </View>

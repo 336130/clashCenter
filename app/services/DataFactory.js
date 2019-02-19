@@ -24,6 +24,10 @@ export default class DataFactory {
          return DataFactory.getData("search/SearchForClan",{name,warFrequency,minMembers,maxMembers,minClanPoints,minClanLevel,location});        
     }
 
+    static GetClan = (tag) => {
+        return DataFactory.getData('clan/GetClan',{tag});
+    }
+
     static GetLocations = () => {
         return fetch(DataFactory.ApiEndpoint + "location/GetLocations")
         .then((response) => response.json());
