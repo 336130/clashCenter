@@ -62,8 +62,8 @@ export class SmallClanDisplay extends Component {
     render(){
         let clan = this.props.clan;
 
-        let favColor = this.props.clan.IsFavorite ? "#ffeb11" : "#000000";
-        let intColor = this.props.clan.IsInterest ? "#ffeb11" : "#000000";
+        let favColor = this.props.clan.isFavorite ? "#ffeb11" : "#000000";
+        let intColor = this.props.clan.isInterest ? "#ffeb11" : "#000000";
         return(
             <View style={styles.container}>
                 <View style={styles.paddingRight}>
