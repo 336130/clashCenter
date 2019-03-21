@@ -18,7 +18,7 @@ export class SignIn extends Component{
         AccountFactory.Login(this.state.username,this.state.password)
         .then((response) => {
             if (!response.error){
-                AccountFactory.SetToken(response.access_token,response.expires_in);
+                AccountFactory.SetToken(response.access_token);
                 this.props.screenProps("HomeRT");
             } else {
                 this.setState({errors:response.error_description});

@@ -47,8 +47,7 @@ export default class AccountFactory{
     }
 
     static Register = (username,password) => {
-        return DataFactory.getData("account/Register",{username,password})
-        .catch((error) => console.log(error));
+        return DataFactory.getData("account/Register",{username,password});
     }
 
     static RefreshToken = () => {

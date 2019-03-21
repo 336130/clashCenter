@@ -23,7 +23,7 @@ export class AdvancedSearchControls extends Component{
         let locationOptions = [];
         if (this.props.locations){
             this.props.locations.forEach((location) => {
-                locationOptions.push(<Picker.Item label={location.Name} value={location.LocationID} key={location.LocationID} />)
+                locationOptions.push(<Picker.Item label={location.name} value={location.locationID} key={location.locationID} />)
             });
         }
 
@@ -37,7 +37,7 @@ export class AdvancedSearchControls extends Component{
                     onValueChange={(location,itemIndex) => {
                         this.props.searchCriteria.location = location;
                     }}>
-                    <Picker.Item label="-- Please Select --" value=""/>
+                    <Picker.Item label="-- Please Select --" value="0" key="0"/>
                     {locationOptions}
                 </Picker>
             </View>

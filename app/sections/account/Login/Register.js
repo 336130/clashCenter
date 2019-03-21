@@ -16,13 +16,14 @@ export class Register extends Component{
     handleRegistration = () => {
         AccountFactory.Register(this.state.username,this.state.password).then((response) => {
             console.log(response);
-            if (response.Error){
-                this.setState(({errors:this.state.errors + response.Errors}))
+            if (response.error){
+                this.setState(({errors:response.errors}))
             } else {
-                AccountFactory.SetToken(response.Message);
+                AccountFactory.SetToken(response.message);
                 this.props.navigation.navigate("HomeRT");
             }
         })
+        .catch((error) => console.log(error));
     }
 
     render(){
