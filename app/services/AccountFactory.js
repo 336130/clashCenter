@@ -2,7 +2,6 @@ import React from 'react';
 import {AsyncStorage} from 'react-native';
 
 import DataFactory from './DataFactory';
-import { Account } from '../views/Account';
 
 export default class AccountFactory{
 
@@ -20,12 +19,23 @@ export default class AccountFactory{
     }
 
     static IsLoggedIn = () => {
-        return !!AccountFactory.Token;
+            return !!AccountFactory.Token;
     }
 
     static Login = (username,password) => {
-        return DataFactory.getData("account/LoginUser",{username,password})
-        .catch((error) => console.log(error));
+        return fetch(DataFactory.ApiEndpoint + "token",{
+            method:'POST',
+            headers:{
+                "content-type":"application/x-www-form-urlencoded"
+            },
+            body:"username=" + username + "&" +
+                "password=" + password + "&" +
+                "grant_type=password"
+        })
+        .then((response) =>  
+        {
+            return response.json()
+        });
     }
 
     static Logout = () => {
@@ -41,14 +51,17 @@ export default class AccountFactory{
         .catch((error) => console.log(error));
     }
 
-    static RefreshAuthToken = () => {
-        DataFactory.getData("account/Refresh",{Token:AccountFactory.Token})
-        .then((response) => {
-            AccountFactory.SetToken(response.Message);
-        })
-        .catch((error) => {
-            AccountFactory.SetToken("");
-            console.log(error);
+    static RefreshToken = () => {
+        AccountFactory.GetToken().then((response) => {
+            AccountFactory.SetToken(response);
+            fetch(DataFactory.ApiEndpoint + "account/refreshToken",AccountFactory.Token)
+            .then((response) => response.json())
+            .then(response => {
+                if (response){
+                    AccountFactory.Login(response.username,response.password)
+                    .then((response) => AccountFactory.SetToken(response.access_token))
+                }
+            }).catch((error) => console.log(error));
         });
     }
 

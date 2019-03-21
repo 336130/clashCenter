@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,Image,StyleSheet,TouchableOpacity,ScrollView} from 'react-native'
+import {View,Text,Image,StyleSheet,TouchableOpacity,ScrollView,ActivityIndicator} from 'react-native'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -20,13 +20,13 @@ export class ClanDetails extends Component{
 
     handleFavoritePress = () => {
         if (AccountFactory.IsLoggedIn) {
-            if (this.props.clan.IsFavorite){
-                DataFactory.RemoveFavorite(this.props.clan.Tag)
+            if (this.props.clan.isFavorite){
+                DataFactory.RemoveFavorite(this.props.clan.tag)
                 .then((response) => {
                     this.getUpdatedData();
                 })
             } else {
-                DataFactory.AddFavorite(this.props.clan.Tag)
+                DataFactory.AddFavorite(this.props.clan.tag)
                 .then((response) => {
                     this.getUpdatedData();
                 })
@@ -38,13 +38,13 @@ export class ClanDetails extends Component{
 
     handleInterestPress = () => {
         if (AccountFactory.IsLoggedIn){
-            if (this.props.clan.IsInterest){
-                DataFactory.RemoveInterest(this.props.clan.Tag)
+            if (this.props.clan.isInterest){
+                DataFactory.RemoveInterest(this.props.clan.tag)
                 .then((response) => {
                     this.getUpdatedData();
                 })
             } else {
-                DataFactory.AddInterest(this.props.clan.Tag)
+                DataFactory.AddInterest(this.props.clan.tag)
                 .then((response) => {
                     this.getUpdatedData();
                 })
@@ -55,10 +55,10 @@ export class ClanDetails extends Component{
     }
 
     getUpdatedData = () => {
-        DataFactory.GetClan(this.props.clan.Tag)
+        DataFactory.GetClan(this.props.clan.tag)
         .then((response) => {
-            this.setState({fetchedClan:response.Latest,
-                fetchedClanHistory:response.History,
+            this.setState({fetchedClan:response.latest,
+                fetchedClanHistory:response.history,
                 dataFetched:true});
         })
     }
@@ -71,16 +71,18 @@ export class ClanDetails extends Component{
         let clan = null, members = [];
         if (this.state.dataFetched) {
             clan = this.state.fetchedClan;
-            for (var i = 0; i < clan.MemberList.length; i++){
-                 members.push(<SmallMemberDetails member={clan.MemberList[i]} key={i}></SmallMemberDetails>)
+            for (var i = 0; i < clan.memberList.length; i++){
+                 members.push(<SmallMemberDetails member={clan.memberList[i]} key={i}></SmallMemberDetails>)
             }           
         } else {
             clan = this.props.clan;
-            members = <View></View>
+            members = <View>
+                <ActivityIndicator style={{marginTop: 30}} size="large" color="#42b9f4"></ActivityIndicator>
+            </View>
         }
 
-        let favColor = clan.IsFavorite ? "#ffeb11" : "#000000";
-        let intColor = clan.IsInterest ? "#ffeb11" : "#000000";
+        let favColor = clan.isFavorite ? "#ffeb11" : "#000000";
+        let intColor = clan.isInterest ? "#ffeb11" : "#000000";
         return(
             <View style={styles.container}>
                 <View style={styles.detailsContainer}>
@@ -88,18 +90,18 @@ export class ClanDetails extends Component{
                         <View style={styles.imageContainer}>
                             <Image 
                                 style={styles.image}
-                                source={{uri:clan.BadgeURLs.Small}}>
+                                source={{uri:clan.badgeURLs.small}}>
                             </Image>
                             <View style={styles.levelText}> 
-                                <Text>{clan.ClanLevel}</Text>
+                                <Text>{clan.clanLevel}</Text>
                             </View>
                         </View>
-                        <Text style={styles.tag}>{clan.Tag}</Text>
+                        <Text style={styles.tag}>{clan.tag}</Text>
                     </View>
                     <View style={styles.clanText}>
-                        <Text numberOfLines={1} style={styles.name}>{clan.Name}</Text>
-                        <Text>Members: {clan.Members}</Text>
-                        <Text>Clan Points: {clan.ClanPoints}</Text>
+                        <Text numberOfLines={1} style={styles.name}>{clan.name}</Text>
+                        <Text>Members: {clan.members}</Text>
+                        <Text>Clan Points: {clan.clanPoints}</Text>
                     </View>
                     <View style={styles.favIcons}>
                         <TouchableOpacity onPress={this.handleFavoritePress}>

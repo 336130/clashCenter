@@ -11,19 +11,19 @@ export class SmallMemberDetails extends Component{
         return(
             <View style={styles.container}>
                 <View style={styles.nameContainer}>
-                    <Text numberOfLines={1} style={styles.name}>{member.Name}</Text>
-                    <Text>{member.Tag}</Text>
-                    <Text numberOfLines={1}>Rank: {member.Role}</Text>
+                    <Text numberOfLines={1} style={styles.name}>{member.name}</Text>
+                    <Text>{member.tag}</Text>
+                    <Text numberOfLines={1}>Rank: {member.role}</Text>
                 </View>
                 <View style={styles.donationsContainer}>
                     <Text>Donations:</Text>
-                    <Text style={styles.donationIndent}>Sent: {member.Donations}</Text>
-                    <Text style={styles.donationIndent}>Recieved: {member.DonationsRecieved}</Text>
+                    <Text style={styles.donationIndent}>Sent: {member.donations}</Text>
+                    <Text style={styles.donationIndent}>Recieved: {member.donationsRecieved}</Text>
                 </View>
                 <View style={styles.detailsContainer}>
-                    <Text>Exp: {member.ExpLevel}</Text>
-                    <Text>Trophies: {member.Trophies}</Text>
-                    <Text>Vs. Trophies: {member.VersusTrophies}</Text>
+                    <Text>Exp: {member.expLevel}</Text>
+                    <Text>Trophies: {member.trophies}</Text>
+                    <Text>Vs. Trophies: {member.versusTrophies}</Text>
                 </View>
             </View>
         )
@@ -60,6 +60,5 @@ const styles = StyleSheet.create({
     },
     detailsContainer:{
         flex:1,
-        padding: 5,
     }
 })

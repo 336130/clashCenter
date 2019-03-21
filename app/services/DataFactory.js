@@ -5,7 +5,7 @@ import AccountFactory from './AccountFactory';
 
 export default class DataFactory {
 
-    static ApiEndpoint = "http://192.168.1.106/api/";
+    static ApiEndpoint = "http://clashcenter.azurewebsites.net/api/";
 
     static getData = (destination,parameters) => {
         return fetch(DataFactory.ApiEndpoint + destination,{
@@ -17,7 +17,7 @@ export default class DataFactory {
             },
             body: JSON.stringify(parameters)
          })
-        .then((response) => response.json())
+        .then((response) => response.json());
     }
 
     static SearchForTerm = (name,warFrequency,minMembers,maxMembers,minClanPoints,minClanLevel,location) => {

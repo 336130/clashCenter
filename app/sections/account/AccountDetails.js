@@ -16,35 +16,38 @@ export class AccountDetails extends Component{
     componentDidMount =() => {
         AccountFactory.GetUserDetails().then((response) => {
             this.setState({accountInfo:response})
-        });
+        })
+        .catch((error) => console.log(error));
     }
 
     handleLogout = () => {
         AccountFactory.Logout().then((response) =>{
             this.props.navigation.navigate("HomeRT");
         })
+        .catch((error) => console.log(error));
     }
 
     handleFavoriteChange = () => {
         AccountFactory.GetUserDetails().then((response) => {
             this.setState({accountInfo:response})
-        });
+        })
+        .catch((error) => console.log(error));
     }
 
     render(){
         let favoritesContainer = [];
         if (this.state.accountInfo){
-            if (this.state.accountInfo.Favorites){
-                for (var i = 0; i <  this.state.accountInfo.Favorites.length; i++){
-                    let Clan = this.state.accountInfo.Favorites[i];
+            if (this.state.accountInfo.favorites){
+                for (var i = 0; i <  this.state.accountInfo.favorites.length; i++){
+                    let Clan = this.state.accountInfo.favorites[i];
                     favoritesContainer.push(<SmallClanDisplay navigation={this.props.navigation} clan={Clan} key={Clan.Tag} callParent={this.handleFavoriteChange}/>);
                 }
             }
         }
-        let name = this.state.accountInfo ? this.state.accountInfo.Username : "";
-        let id = this.state.accountInfo ? this.state.accountInfo.UserID : "";
-        let favCount = this.state.accountInfo ? this.state.accountInfo.Favorites.length : 0;
-        let intCount = this.state.accountInfo ? this.state.accountInfo.Favorites.filter((fav)=> fav.IsInterest).length:0;
+        let name = this.state.accountInfo ? this.state.accountInfo.username : "";
+        let id = this.state.accountInfo ? this.state.accountInfo.userID : "";
+        let favCount = this.state.accountInfo ? this.state.accountInfo.favorites.length : 0;
+        let intCount = this.state.accountInfo ? this.state.accountInfo.favorites.filter((fav)=> fav.IsInterest).length:0;
 
         return(
             <View style={styles.container}>

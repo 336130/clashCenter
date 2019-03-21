@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,TextInput,StyleSheet,TouchableOpacity} from 'react-native';
+import {View,Text,TextInput,StyleSheet,TouchableOpacity,ScrollView} from 'react-native';
 
 import AccountFactory from '../../../services/AccountFactory';
 
@@ -17,23 +17,24 @@ export class SignIn extends Component{
     handleLogin = () => {
         AccountFactory.Login(this.state.username,this.state.password)
         .then((response) => {
-            if (!response.Error){
-                AccountFactory.SetToken(response.Message);
+            if (!response.error){
+                AccountFactory.SetToken(response.access_token,response.expires_in);
                 this.props.screenProps("HomeRT");
             } else {
-                this.setState({errors:response.Errors});
+                this.setState({errors:response.error_description});
             }
     })
+    .catch((error) => console.log(error));
     }
 
     render(){
-        let errors = "";
+        let errors = this.state.errors ? this.state.errors : "";
 
         return(
             <View>
                 <View style={styles.loginContainer}>
                     <Text style={styles.loginMessageHeader}>Welcome Back!</Text>
-                    <Text style={styles.loginMessageText}>Or is it nice to see you? If so please use the register tab.</Text>
+                    <Text style={styles.loginMessageText}>Or is it nice to meet you? If so please use the register tab.</Text>
                 </View>
                 <View style={styles.loginContainer}>
                     <TextInput
@@ -61,6 +62,9 @@ export class SignIn extends Component{
                 <TouchableOpacity style={styles.loginButton} onPress={this.handleLogin}>
                     <Text style={styles.loginButtonText}>Submit</Text>
                 </TouchableOpacity>
+                <ScrollView>
+                    <Text>{errors}</Text>
+                </ScrollView>
             </View>
         )
     }

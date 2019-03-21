@@ -49,11 +49,7 @@ const Routes = createAppContainer(createStackNavigator({
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    //need to retrieve token from 
-    AccountFactory.GetToken().then((token) => {
-      AccountFactory.Token = token;
-      AccountFactory.RefreshAuthToken()
-    })
+    AccountFactory.RefreshToken();
   }
 
 
