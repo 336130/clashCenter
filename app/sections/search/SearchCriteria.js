@@ -59,7 +59,7 @@ export class SearchCriteria extends Component{
                                       this.state.criteria.minClanLevel,
                                       this.state.criteria.location)
             .then((response) => {
-                if (response.items){
+                if (response && response.items){
                     this.props.searchData(response.items);
                 }
                 this.props.loading(false);

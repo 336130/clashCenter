@@ -5,10 +5,10 @@ import AccountFactory from './AccountFactory';
 
 export default class DataFactory {
 
-    static ApiEndpoint = "http://clashcenter.azurewebsites.net/api/";
+    static ApiEndpoint = "https://clashcenterwebapp.azurewebsites.net/api/";
 
     static getData = (destination,parameters) => {
-        return fetch(DataFactory.ApiEndpoint + destination,{
+         return fetch(DataFactory.ApiEndpoint + destination,{
             method:"POST",
             headers: {
               Accept: 'application/json',
